@@ -1,0 +1,132 @@
+{
+  "common": {
+    "language": "Language",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "logout": "Logout"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "evaluation": "Evaluation",
+    "new_chat": "New Chat",
+    "brand": "Legal RAG Chatbot",
+    "home": "Home"
+  },
+  "hero": {
+    "title": "Legal RAG Chatbot",
+    "subtitle": "Multi-turn legal assistant grounded in your documents. Fast retrieval, context-aware responses, and evaluation tools for high-quality legal help.",
+    "login": "Login",
+    "register": "Register"
+  },
+  "features": {
+    "docs": {
+      "title": "Document-grounded answers",
+      "desc": "Upload legal PDFs, retrieve relevant passages, and get answers backed by sources."
+    },
+    "multiturn": {
+      "title": "Multi-turn conversations",
+      "desc": "Maintain session-based history for follow-up questions and case-building."
+    },
+    "evaluation": {
+      "title": "LLM-as-a-Judge",
+      "desc": "Automated multi-dimensional evaluation for response quality and citations."
+    }
+  },
+  "auth_ui": {
+    "welcome_back": "Welcome back",
+    "signin_sub": "Sign in to access your legal chats and documents",
+    "signing_in": "Signing in...",
+    "create_account": "Create account",
+    "create_account_desc": "Start secure, document-grounded legal conversations",
+    "registering": "Registering...",
+    "already_account": "Already have an account?",
+    "full_name": "Full name",
+    "create_password": "Create a password",
+    "registered_success": "Registered successfully. Please login."
+  },
+  "chat": {
+    "send": "Send",
+    "type_message": "Type your message...",
+    "clear_confirm": "Clear all messages in this chat?",
+    "clear_button": "🗑️ Clear",
+    "enable_evaluation": "Enable LLM-as-a-Judge Evaluation",
+    "assistant_unavailable": "Assistant currently unavailable",
+    "try_again": "Please try again later"
+    ,"evaluation_title": "LLM Judge Evaluation",
+    "evaluation_overall": "Overall Score",
+    "evaluation_summary": "Summary"
+    ,"fallback_tooltip": "Use a quick local fallback response when RAG is unavailable",
+    "fallback_on": "Fallback: On",
+    "fallback_off": "Fallback: Off"
+  },
+  "chat_list": {
+    "no_chats_available": "No chats available.",
+    "no_chats_create": "No chats yet. Create a new chat.",
+    "delete_title": "Delete chat"
+  },
+  "dashboard": {
+    "chats": "Chats",
+    "new": "New",
+    "hide": "Hide",
+    "hide_chats": "Hide Chats",
+    "show_chats": "Show Chats",
+    "select_create": "Select or create a chat"
+  },
+  "alerts": {
+    "create_failed": "Failed to create chat",
+    "delete_confirm": "Delete this chat? This action cannot be undone.",
+    "delete_failed": "Failed to delete chat",
+    "load_failed": "Failed to load chats"
+  },
+  "app": {
+    "back_to_chat": "← Back to Chat",
+    "evaluations_button": "📊 Evaluations"
+  },
+  "evaluation": {
+    "title": "Evaluation Dashboard",
+    "run_benchmark": "Run Benchmark",
+    "results": "Results",
+    "accuracy": "Accuracy",
+    "retrieval": "Retrieval Performance",
+    "quality": "Response Quality",
+    "total_evaluations": "Total Evaluations",
+    "avg_overall": "Avg Overall Score",
+    "system_health": "System Health",
+    "dimension_breakdown": "Dimension Breakdown",
+    "session_evaluations": "Session Evaluations",
+    "select_session": "Select a session...",
+    "session": {
+      "metrics_line": "Overall: {{overall}}/5 | Accuracy: {{accuracy}}/5 | Reasoning: {{reasoning}}/5"
+    },
+    "metrics": {
+      "factual": "Factual Accuracy",
+      "reasoning": "Legal Reasoning",
+      "citations": "Citation Quality",
+      "clarity": "Clarity",
+      "completeness": "Completeness"
+    }
+  },
+  "debug": {
+    "title": "Debug",
+    "token_usage": "Token Usage:",
+    "conversation": "Conversation",
+    "retrieved_docs": "Retrieved Docs",
+    "query": "Query",
+    "total": "Total",
+    "query_rewritten": "Query Rewritten:",
+    "original": "Original",
+    "rewritten": "Rewritten",
+    "conversation_preview": "Conversation context (preview)",
+    "retrieved_preview": "Retrieved context (preview)"
+  },
+  "chat_ui": {
+    "evaluation_title": "LLM Judge Evaluation"
+  }
+}

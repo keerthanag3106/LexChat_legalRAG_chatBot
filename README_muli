@@ -1,0 +1,163 @@
+Yes, Thati — here’s your **complete multilingual integration guide**, ready to be dropped into your `README.md`. It includes every file, package, schema update, and optional logic needed to fully support 12 Indian languages across your MERN + RAG stack.
+
+---
+
+## 🌐 Multilingual Support (12 Indian Languages)
+
+Enable your chatbot to understand and respond in 12 Indian languages:  
+**English, Hindi, Telugu, Tamil, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, Odia, Assamese**
+
+---
+
+### ✅ 1. Supported Language Codes
+
+| Code | Language     |
+|------|--------------|
+| en   | English      |
+| hi   | Hindi        |
+| te   | Telugu       |
+| ta   | Tamil        |
+| bn   | Bengali      |
+| mr   | Marathi      |
+| gu   | Gujarati     |
+| kn   | Kannada      |
+| ml   | Malayalam    |
+| pa   | Punjabi      |
+| or   | Odia         |
+| as   | Assamese     |
+
+---
+
+### 📁 2. Frontend Setup (React + i18next)
+
+#### a. Install Required Packages
+
+```bash
+npm install i18next react-i18next i18next-browser-languagedetector
+```
+
+#### b. Create `i18n.js` in `frontend/src/`
+
+```js
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+import en from './locales/en.json';
+import hi from './locales/hi.json';
+import te from './locales/te.json';
+import ta from './locales/ta.json';
+import bn from './locales/bn.json';
+import mr from './locales/mr.json';
+import gu from './locales/gu.json';
+import kn from './locales/kn.json';
+import ml from './locales/ml.json';
+import pa from './locales/pa.json';
+import or_ from './locales/or.json';
+import as_ from './locales/as.json';
+
+const resources = {
+  en: { translation: en },
+  hi: { translation: hi },
+  te: { translation: te },
+  ta: { translation: ta },
+  bn: { translation: bn },
+  mr: { translation: mr },
+  gu: { translation: gu },
+  kn: { translation: kn },
+  ml: { translation: ml },
+  pa: { translation: pa },
+  or: { translation: or_ },
+  as: { translation: as_ }
+};
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    supportedLngs: Object.keys(resources),
+    fallbackLng: 'en',
+    interpolation: { escapeValue: false },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage']
+    }
+  });
+
+export default i18n;
+```
+
+#### c. Create Locale Files
+
+**Path:** `frontend/src/locales/`  
+Create 12 files: `en.json`, `hi.json`, `te.json`, etc.
+
+Example `hi.json`:
+```json
+{
+  "welcome": "कानूनी चैटबॉट में आपका स्वागत है",
+  "ask_question": "अपना कानूनी प्रश्न यहाँ पूछें..."
+}
+```
+
+---
+
+### 🧱 3. Backend Setup (Mongoose Schema)
+
+**File:** `backend/models/Conversation.js`  
+Update the `language` enum in `MessageSchema`:
+
+```js
+language: {
+  type: String,
+  enum: ['en', 'hi', 'te', 'ta', 'bn', 'mr', 'gu', 'kn', 'ml', 'pa', 'or', 'as'],
+  default: 'en'
+}
+```
+
+---
+
+### 🧠 4. Optional: Fallback Logic for Unsupported Languages
+
+In `chatController.js` (or wherever you handle incoming messages):
+
+```js
+const supportedLanguages = ['en','hi','te','ta','bn','mr','gu','kn','ml','pa','or','as'];
+const safeLang = supportedLanguages.includes(language) ? language : 'en';
+```
+
+Use `safeLang` instead of `language` when saving messages.
+
+---
+
+### 🧪 5. Multilingual Testing
+
+Use these sample questions to test each language:
+
+| Language | Sample Question |
+|----------|------------------|
+| en       | What is Article 21 of the Indian Constitution? |
+| hi       | भारतीय संविधान का अनुच्छेद 21 क्या है? |
+| te       | భారత రాజ్యాంగంలోని ఆర్టికల్ 21 అంటే ఏమిటి? |
+| ta       | இந்திய அரசியலமைப்பின் பிரிவு 21 என்பது என்ன? |
+| bn       | ভারতীয় সংবিধানের অনুচ্ছেদ ২১ কী? |
+| mr       | भारतीय संविधानातील अनुच्छेद २१ काय आहे? |
+| gu       | ભારતીય બંધારણનો કલમ ૨૧ શું છે? |
+| kn       | ಭಾರತೀಯ ಸಂವಿಧಾನದ ಕಲಂ ೨೧ ಎಂದರೇನು? |
+| ml       | ഇന്ത്യൻ ഭരണഘടനയിലെ ആർട്ടിക്കിൾ 21 എന്താണ്? |
+| pa       | ਭਾਰਤੀ ਸੰਵਿਧਾਨ ਦੇ ਆਰਟਿਕਲ 21 ਦਾ ਕੀ ਅਰਥ ਹੈ? |
+| or       | ଭାରତୀୟ ସଂବିଧାନର ଅନୁଚ୍ଛେଦ 21 କ’ଣ? |
+| as       | ভাৰতীয় সংবিধানৰ অনুচ্ছেদ ২১ কি? |
+
+---
+
+### 📚 6. Optional README Badge
+
+```md
+![Multilingual](https://img.shields.io/badge/language-support-12%20Indian%20languages-blue)
+```
+
+---
+
+This is everything you need to fully support multilingual legal queries across your stack. I can also help you generate the actual `.json` files for each language or automate language detection from user input.

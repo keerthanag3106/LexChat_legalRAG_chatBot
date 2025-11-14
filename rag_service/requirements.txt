@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pymongo
+python-dotenv
+groq
+sentence-transformers
+faiss-cpu
+PyPDF2
+transformers
+rank-bm25
+torch
+langdetect
+sacremoses
+
+
