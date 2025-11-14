@@ -1,4 +1,4 @@
-# Legal MERN Chatbot
+# LexChat-Multi Turn Conversation Legal Indian Legal System Chatbot
 
 A full-stack legal question-answering system combining MERN stack with Retrieval-Augmented Generation (RAG) using hybrid search (BM25 + semantic vectors) and LLM-as-a-Judge evaluation.
 
