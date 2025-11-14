@@ -53,7 +53,7 @@ legal_mern_chatbot/
 ### 1. Clone Repository
 
 ```bash
-git clone (https://github.com/GuduriAmulya/legal_mern_chatbot.git )
+git clone (https://github.com/keerthanag3106/LexChat_legalRAG_chatBot.git )
 cd legal_mern_chatbot
 ```
 
@@ -84,7 +84,8 @@ PORT=8000
 MODEL_MAX_TOKENS=6000
 RESERVED_RESPONSE_TOKENS=1000
 RETRIEVE_K=5
-ENABLE_TURN_SUMMARIZATION=false
+ENABLE_TURN_SUMMARIZATION=true
+MONGO_DB_NAME=db_name
 ```
 
 **Download Legal Documents:**
@@ -92,10 +93,11 @@ ENABLE_TURN_SUMMARIZATION=false
 Place these PDFs in `rag_service/data/`:
 1. [Indian Constitution](https://cdnbbsr.s3waas.gov.in/s380537a945c7aaa788ccfcdf1b99b5d8f/uploads/2023/05/2023050195.pdf)
 2. [UDHR](https://www.ohchr.org/sites/default/files/UDHR/Documents/UDHR_Translations/eng.pdf)
+download everything in rag_service/data 
 
 **Start RAG Service:**
 ```bash
-uvicorn main:app --reload --port 8000
+uvicorn main:app --host 127.0.0.1 --port 8000
 ```
 
 Verify: `curl http://localhost:8000/health` → `{"status":"ok","initialized":true}`
@@ -116,7 +118,7 @@ npm install
 MONGODB_URI=mongodb://local...
 JWT_SECRET=your_random_secret_key_here
 PORT=5000
-RAG_SERVICE_URL=http://localhost:8000
+RAG_SERVICE_URL=http://localhost:5000
 ```
 
 **Start Backend:**
@@ -289,41 +291,82 @@ RETRIEVE_K=5                    # Number of chunks to retrieve
 
 ```
 legal_mern_chatbot/
-├── frontend/                   # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ChatWindow.js   # Main chat UI
-│   │   │   ├── Dashboard.js    # Chat list
-│   │   │   └── Navbar.js
-│   │   ├── services/
-│   │   │   └── api.js          # API client
-│   │   └── App.js
-│   └── package.json
-├── backend/                    # Node.js backend
+├── README.md
+├── README_muli
+├── .gitignore
+├── backend/
+│   ├── .env
+│   ├── package.json
+│   ├── server.js
+│   ├── config/
+│   │   └── db.js
 │   ├── controllers/
 │   │   ├── authController.js
-│   │   └── chatController.js   # Forwards to RAG service
-│   ├── models/
-│   │   ├── User.js
-│   │   └── Conversation.js     # Stores messages + ragSessionId
-│   ├── routes/
+│   │   └── chatController.js
 │   ├── middleware/
 │   │   └── auth.js
-│   └── server.js
-└── rag_service/                # Python RAG engine
-    ├── src/
-    │   ├── rag_pipeline.py     # Main RAG orchestrator
-    │   ├── hybrid_retriever.py # BM25 + Vector fusion
-    │   ├── vector_store.py     # FAISS + embeddings
-    │   ├── conversation_manager.py  # Mongo-backed history
-    │   ├── legal_evaluator.py  # LLM-as-a-Judge
-    │   └── document_processor.py
-    ├── data/                   # PDFs go here
-    ├── vector_store/           # Generated FAISS index
-    ├── benchmark_queries.json  # 30 legal Q&A pairs
-    ├── benchmark_retrieval.py  # Evaluation script
-    ├── main.py                 # FastAPI server
-    └── requirements.txt
+│   ├── models/
+│   │   ├── Conversation.js
+│   │   └── User.js
+│   └── routes/
+│       ├── auth.js
+│       └── chats.js
+├── frontend/
+│   ├── package.json
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── index.js
+│   │   ├── App.js
+│   │   ├── i18n.js
+│   │   ├── styles.css
+│   │   ├── components/
+│   │   │   ├── ChatList.js
+│   │   │   ├── ChatWindow.js
+│   │   │   └── Navbar.js
+│   │   ├── pages/
+│   │   │   ├── Dashboard.js
+│   │   │   ├── EvaluationDashboard.js
+│   │   │   ├── LandingPage.js
+│   │   │   ├── Login.js
+│   │   │   └── Register.js
+│   │   ├── locales/
+│   │   │   ├── as.json
+│   │   │   ├── bn.json
+│   │   │   ├── en.json
+│   │   │   ├── gu.json
+│   │   │   ├── hi.json
+│   │   │   ├── kn.json
+│   │   │   ├── ml.json
+│   │   │   ├── mr.json
+│   │   │   ├── or.json
+│   │   │   ├── pa.json
+│   │   │   ├── ta.json
+│   │   │   └── te.json
+│   │   └── services/
+│   │       └── api.js
+├── rag_service/
+│   ├── .env
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── benchmark_queries.json
+│   ├── benchmark_results.json
+│   ├── benchmark_retrieval.py
+│   ├── plot_results.py
+│   ├── tune_alpha.py
+│   ├── main.py
+│   ├── data/                # PDFs (Indian Constitution, UDHR, etc.)
+│   └── src/
+│       ├── conversation_manager.py
+│       ├── document_processor.py
+│       ├── hybrid_retriever.py
+│       ├── legal_evaluator.py
+│       ├── rag_pipeline.py
+│       ├── translation_service.py
+│       ├── vector_store.py
+│       └── __pycache__/
+└── vector_store/
+    └── faiss.index
 ```
 
 ---
